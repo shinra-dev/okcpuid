@@ -1,0 +1,43 @@
+PKG_CFLAGS = -w
+
+R_OBJS = \
+sunbathe/src/congruences.o \
+sunbathe/src/constants.o \
+sunbathe/src/cont_frac.o \
+sunbathe/src/diophantine_linear.o \
+sunbathe/src/factorization.o \
+sunbathe/src/functions.o \
+sunbathe/src/gcd.o \
+sunbathe/src/linalg.o \
+sunbathe/src/linalgf.o \
+sunbathe/src/misc.o \
+sunbathe/src/prime_sieves.o \
+sunbathe/src/prime_tests_deterministic.o \
+sunbathe/src/prime_tests_probabilistic.o \
+sunbathe/src/rand.o \
+sunbathe/src/symbols.o \
+sunbathe/src/util.o \
+sunbathe_congruences.o \
+sunbathe_cont_frac.o \
+sunbathe_diophantine_linear.o \
+sunbathe_factorization.o \
+sunbathe_functions.o \
+sunbathe_gcd.o \
+sunbathe_misc.o \
+sunbathe_prime_sieves.o \
+sunbathe_prime_tests_deterministic.o \
+sunbathe_prime_tests_probabilistic.o \
+sunbathe_rand.o \
+sunbathe_symbols.o \
+sunbathe_util.o
+OBJECTS = ${R_OBJS}
+
+
+all: $(SHLIB)
+
+$(SHLIB): $(OBJECTS)
+
+clean:
+	@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+                sunbathe/src/*.o \
+                Makedeps Makevars $(SHLIB) $(OBJECTS)

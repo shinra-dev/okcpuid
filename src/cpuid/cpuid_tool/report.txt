@@ -1,0 +1,26 @@
+CPUID is present
+CPU Info:
+------------------
+  vendor_str : `GenuineIntel'
+  vendor id  : 0
+  brand_str  : `Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz'
+  family     : 6 (06h)
+  model      : 10 (0Ah)
+  stepping   : 7 (07h)
+  ext_family : 6 (06h)
+  ext_model  : 42 (2Ah)
+  num_cores  : 8
+  num_logical: 16
+  tot_logical: 4
+  L1 D cache : 32 KB
+  L1 I cache : 32 KB
+  L2 cache   : 256 KB
+  L3 cache   : 4096 KB
+  L1D assoc. : 8-way
+  L2 assoc.  : 8-way
+  L3 assoc.  : 16-way
+  L1D line sz: 64 bytes
+  L2 line sz : 64 bytes
+  L3 line sz : 64 bytes
+  code name  : `Pentium III (Coppermine)'
+  features   : fpu vme de pse tsc msr pae mce cx8 apic mtrr sep pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe pni pclmul dts64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 syscall xd popcnt aes xsave osxsave avx lm lahf_lm

@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/libcpuid
+
+Name: libcpuid
+Description: libcpuid provides CPU identification for x86
+Requires:
+Version: 0.1.0
+Libs: -L${libdir} -lcpuid
+Cflags: -I${includedir}

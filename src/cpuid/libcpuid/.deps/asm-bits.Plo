@@ -1,0 +1,15 @@
+asm-bits.lo: asm-bits.c /usr/include/stdc-predef.h \
+ /usr/include/x86_64-linux-gnu/bits/predefs.h libcpuid.h libcpuid_types.h \
+ libcpuid_constants.h asm-bits.h
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
+
+libcpuid.h:
+
+libcpuid_types.h:
+
+libcpuid_constants.h:
+
+asm-bits.h:
