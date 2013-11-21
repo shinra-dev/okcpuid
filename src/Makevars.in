@@ -1,36 +1,28 @@
 ### Setup R source code and objects.
-PKG_CPPFLAGS = @PKG_CPPFLAGS@
-PKG_LIBS     = @PKG_LIBS@
+PKG_CFLAGS = -w
 
 ### For user configuration.
 USER_CONF = Makeconf
 
 ### For libcpuid
-R_OBJS =
-cpuid/src/libcpuid/asm-bits.o \
-cpuid/src/libcpuid/cpuid_main.o \
-cpuid/src/libcpuid/libcpuid_util.o \
-cpuid/src/libcpuid/rdtsc.o \
-cpuid/src/libcpuid/recog_amd.o \
-cpuid/src/libcpuid/recog_intel.o
+R_OBJS = \
+cpuid/libcpuid/asm-bits.o \
+cpuid/libcpuid/cpuid_main.o \
+cpuid/libcpuid/libcpuid_util.o \
+cpuid/libcpuid/rdtsc.o \
+cpuid/libcpuid/recog_amd.o \
+cpuid/libcpuid/recog_intel.o
 
 OBJECTS = ${R_OBJS}
 
 
 ### Start making here.
 all: $(SHLIB)
-    @echo "SLAP_LDFLAGS = $(SLAP_LDFLAGS)" > $(USER_CONF)
-    @echo "SPMD_CPPFLAGS = $(SPMD_CPPFLAGS)" >> $(USER_CONF)
-    @echo "SPMD_LDFLAGS = $(SPMD_LDFLAGS)" >> $(USER_CONF)
-    @echo "PKG_CPPFLAGS = $(PKG_CPPFLAGS)" >> $(USER_CONF)
-    @echo "PKG_CFLAGS = $(PKG_CFLAGS)" >> $(USER_CONF)
-    @echo "PKG_FFLAGS = $(PKG_FFLAGS)" >> $(USER_CONF)
-    @echo "PKG_LIBS = $(PKG_LIBS)" >> $(USER_CONF)
 
 $(SHLIB): $(OBJECTS)
 
 clean:
-    @rm -rf *.o *.d *.rc *.so *.dylib *.dll *.a *.lib \
-                Makedeps Makevars $(USER_CONF) $(SHLIB) $(OBJECTS) \
-                cpuid/libcpuid/*.o \
+		@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+				cpuid/libspuid/*.o \
+				Makedeps Makevars $(SHLIB) $(OBJECTS)
 
