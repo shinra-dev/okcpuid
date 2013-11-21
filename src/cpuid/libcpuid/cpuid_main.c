@@ -37,6 +37,9 @@
 
 /* Implementation: */
 
+char *VERSION = "0.1.0";
+
+
 static int _libcpiud_errno = ERR_OK;
 
 static int set_error(cpu_error_t err)
