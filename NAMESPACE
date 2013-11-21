@@ -1,3 +1,6 @@
+useDynLib(cpuid)
+
+
 # All internal functions
 exportPattern("^[[:alpha:]]+")
 
