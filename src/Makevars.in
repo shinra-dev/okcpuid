@@ -6,12 +6,13 @@ USER_CONF = Makeconf
 
 ### For libcpuid
 R_OBJS = \
-cpuid/libcpuid/asm-bits.o \
-cpuid/libcpuid/cpuid_main.o \
-cpuid/libcpuid/libcpuid_util.o \
-cpuid/libcpuid/rdtsc.o \
+cpuid/libcpuid/cpuid_main.o  \
+cpuid/libcpuid/recog_intel.o  \
 cpuid/libcpuid/recog_amd.o \
-cpuid/libcpuid/recog_intel.o
+cpuid/libcpuid/rdtsc.o \
+cpuid/libcpuid/asm-bits.o \
+cpuid/libcpuid/libcpuid_util.o
+
 
 OBJECTS = ${R_OBJS}
 
