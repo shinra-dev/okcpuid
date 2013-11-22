@@ -3,13 +3,14 @@ Title: Interface to cpuid
 Version: 0.1-0
 Date: 2013-12-1
 Depends: R (>= 2.14.0)
-Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"), email =
-        "schmidt@math.utk.edu"), person("Christian", "Heckendorf", 
-        role = c("aut", "cre")))
+Authors@R: c(person("Drew", "Schmidt", role = c("aut"), email =
+        "schmidt@math.utk.edu"), person("Wei-Chen", "Chen", role="aut"),
+        person("Christian", "Heckendorf", role = "aut"))
 Description: cpuid
 License: BSD
 NeedsCompilation: Yes
 Packaged: 2012-12-18 04:45:42 UTC; mschmid3
 Author: Drew Schmidt [aut, cre],
-  Christian Heckendorf [aut, cre]
+  Wei-Chen Chen [aut],
+  Christian Heckendorf [aut]
 Maintainer: Drew Schmidt <schmidt@math.utk.edu>
