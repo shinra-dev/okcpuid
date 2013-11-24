@@ -38,12 +38,11 @@ int cpu_hardware_info(double *clock, int *ncpus, int *ncores, int *nthreads)
 {
     *ncores = get_ncores();
     
-    
     // these do nothing atm
     *clock = 0.0;
-    *ncores = 0;
+    *ncpus = 0;
     *nthreads = 0;
-    
+	
     return PLATFORM;
 }
 
@@ -81,8 +80,8 @@ int main()
     double clock;
     
     support = cpu_hardware_info(&clock, &ncpus, &ncores, &nthreads);
-    
-    if (support = PLATFORM_SUPPORTED)
+     
+    if (support == PLATFORM_SUPPORTED)
       printf("clock=%f, cpus=%d, ncores=%d, nthreads=%d\n", clock, ncpus, ncores, nthreads);
     else
       printf("platform not supported\n");
