@@ -32,8 +32,22 @@ setMethod("print", signature(x="MHz"),
 
 ### show methods
 setMethod("show", signature(object="flops"),
-  function(object) 
-    print(object, unit=object@unit, unit.names=object@unit.names, digits=3)
+  function(object)
+  {
+    unit <- tolower(object@unit)
+    
+    if (unit == "flops")
+      digits <- 0
+    else
+      digits <- 3
+    
+    if (object@size > 1e22)
+      format <- "e"
+    else
+      format <- "f"
+    
+    cat(sprintf(paste("%.", digits, format, " ", object@unit, "\n", sep=""), object@size))
+  }
 )
 
 

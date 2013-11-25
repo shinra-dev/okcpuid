@@ -5,4 +5,8 @@ import(methods)
 # All internal functions
 exportPattern("^[[:alpha:]]+")
 
+exportClasses("flops")
 
+exportMethods(
+  "print", "show"
+)
