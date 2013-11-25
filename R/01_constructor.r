@@ -8,22 +8,13 @@ check.unit <- function(x)
 {
   # Essentially correct unit (up to case)
   unit <- tolower(x@unit)
-  check <- .units[[x@unit.names]][[x@unit.prefix]][["check"]]
   
-  print <- .units[[x@unit.names]][[x@unit.prefix]][["print"]]
+  check <- .flops[[x@unit.names]][["check"]]
+  print <- .flops[[x@unit.names]][["print"]]
   
-  if (unit %in% check){
+  if (unit %in% check)
+  {
     x@unit <- print[which(check==unit)]
-    
-    return( x )
-  }
-  
-  # Unit does not match unit.prefix --- assume they meant the given unit.prefix and fix unit
-  check <- .units[[x@unit.names]]
-  check[[x@unit.prefix]] <- NULL
-  
-  if (unit %in% check[[1L]][["check"]]){
-    x@unit <- print[which(check[[1L]][["check"]] == unit)]
     
     return( x )
   }
@@ -31,18 +22,17 @@ check.unit <- function(x)
   # Unit does not match unit.names --- assume they meant the given unit.names and fix unit
   other.names <- if (x@unit.names == "short") "long" else "short"
   
-  check <- .units[[other.names]]
-# check[[x@unit.prefix]] <- NULL
+  check <- .flops[[other.names]]
   
-  if (unit %in% check[[x@unit.prefix]][["check"]]){
-    x@unit <- print[which(check[[x@unit.prefix]][["check"]] == unit)]
+  if (unit %in% check[["check"]])
+  {
+    x@unit <- print[which(check[["check"]] == unit)]
     
     return( x )
   }
   
-  check[[x@unit.prefix]] <- NULL
-  
-  if (unit %in% check[[1L]][["check"]]){
+  if (unit %in% check[[1L]][["check"]])
+  {
     x@unit <- print[which(check[[1L]][["check"]] == unit)]
     
     return( x )
@@ -54,19 +44,21 @@ check.unit <- function(x)
 
 
 
-
 check.names <- function(x)
 {
-  prefix <- tolower(x@unit.names)
+  names <- tolower(x@unit.names)
   check <- c("short", "long")
   
-  if (prefix %in% check){
-    x@unit.names <- tolower(prefix)
+  if (names %in% check)
+  {
+    x@unit.names <- names
     
     return( x )
   }
   else
+  {
     FALSE
+  }
 }
 
 
@@ -75,15 +67,11 @@ check.flops <- function(x)
 {
   x <- check.names(x)
   if (is.logical(x))
-    stop("cannot construct 'memuse' object; bad 'unit.names'", call.=F)
-  
-  x <- check.prefix(x)
-  if (is.logical(x))
-    stop("cannot construct 'memuse' object; bad 'unit.prefix'", call.=F)
+    stop("cannot construct 'flops' object; bad 'unit.names'", call.=FALSE)
   
   x <- check.unit(x)
   if (is.logical(x))
-    stop("cannot construct 'memuse' object; bad 'unit'", call.=F)
+    stop("cannot construct 'flops' object; bad 'unit'", call.=FALSE)
   
   return( x )
 }
@@ -91,25 +79,27 @@ check.flops <- function(x)
 
 
 ### constructor
-internal.flops <- function(size=0, unit=.UNIT, unit.prefix=.PREFIX, unit.names=.NAMES)#, precedence=.PRECEDENCE)
+internal.flops <- function(size=0, unit=.UNIT, unit.names=.NAMES)
 {
+  unit.names <- match.arg(tolower(unit.names), c("short", "long"))
+  
+  unit <- match.arg(tolower(unit), c("best", .flops[[unit.names]]$check))
+  
   if (unit == "best")
-    u <- "B"
+    u <- "flops"
   else
     u <- unit
   
   # construct
-  x <- new("memuse", size=size, unit=u, unit.prefix=unit.prefix, unit.names=unit.names)
+  x <- new("flops", size=size, unit=u, unit.names=unit.names)
   
   # sanity check
-  x <- check.mu(x)
+  x <- check.flops(x)
   
-# # convert to the correct unit
-# precedence <- match.arg(tolower(precedence), c("unit", "prefix"))
-  
-# if (precedence == "unit")
-  x <- swap.unit(x=x, unit="best")#, precedence=precedence)
+  x <- swap.unit(x=x, unit="best")
   
   return( x )
 }
+
+flops <- internal.flops
 
