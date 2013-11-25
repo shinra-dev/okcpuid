@@ -1,0 +1,11 @@
+.flops <- list(
+              short = list(
+                           print = c("FLOPS", "KFLOPS", "MFLOPS", "GFLOPS", "TFLOPS", "PFLOPS", "EFLOPS", "ZFLOPS", "YFLOPS"),
+                           check = c("flops", "kflops", "mflops", "gflops", "tflops", "pflops", "eflops", "zflops", "yflops")
+              ),
+              long = list(
+                          print = c("FLOPS", "KiloFLOPS", "MegaFLOPS", "GFLOPS", "TFLOPS", "PFLOPS", "EFLOPS", "ZFLOPS", "YFLOPS"),
+                          check = c("flops", "kiloflops", "megaflops", "gflops", "tflops", "pflops", "eflops", "zflops", "yflops")
+              ),
+              ordmag = c(0, 3, 6, 9, 12, 15, 18, 21, 24)
+)

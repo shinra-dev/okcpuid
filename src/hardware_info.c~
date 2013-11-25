@@ -63,18 +63,9 @@ int cpu_hardware_info(double *clock, int *ncpus, int *ncores)
 
 SEXP main_cpuid_info()
 {
-    SEXP RET;
-    PROTECT(RET = allocVector(INTSXP, 4));
-    PROTECT(RET_NAMES = allocVector(STRSXP, 4));
-    
-    PROTECT(INFO = allocVector(INTSXP, 1));
-    PROTECT(B_OUT = allocMatrix(REALSXP, pt_BLDIM[0], pt_BLDIM[1]));
-    
-    SET_VECTOR_ELT(RET, 0, INFO);
-    SET_VECTOR_ELT(RET, 1, B_OUT);
-    SET_STRING_ELT(RET_NAMES, 0, mkChar("info"));
-    SET_STRING_ELT(RET_NAMES, 1, mkChar("B"));
-    setAttrib(RET, R_NamesSymbol, RET_NAMES);
+    SEXP ret;
+    PROTECT(ret = allocVector(INTSXP, 1));
+    INTEGER(ret)[0] = 0;
     
     
     

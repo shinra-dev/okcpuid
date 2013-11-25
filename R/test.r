@@ -1,4 +1,4 @@
 cpuid <- function()
 {
-    .Call("cpuid_test", PACKAGE="cpuid")
+    .Call("main_cpuid_info", PACKAGE="cpuid")
 }
