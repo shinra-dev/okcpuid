@@ -1,4 +1,5 @@
 ### Setup R source code and objects.
+PKG_CPPFLAGS = @DEFS@
 PKG_CFLAGS = -w
 
 ### For user configuration.
