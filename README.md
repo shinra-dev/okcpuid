@@ -7,3 +7,9 @@ performance in the number of (double precision) floating point operations per se
 
 Install from the shell via 
 R CMD INSTALL cpuid_0.1-0.tar.gz
+
+
+To use, start R and execute:
+
+library(cpuid)
+cpuid()
