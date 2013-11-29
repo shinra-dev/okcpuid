@@ -5,7 +5,7 @@
 library(cpuid, quietly=TRUE)
 
 N <- 4500
-bldim <- c(64, 64)
+bldim <- 64
 
 #linpack()
 
