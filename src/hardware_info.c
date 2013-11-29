@@ -11,59 +11,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#define SINGLE 0
-#define DOUBLE 1
-
-#define PLATFORM_SUPPORTED 0
-#define PLATFORM_ERROR 1
-
-
-
-// Linux
-#if defined(__linux__)
-    #include <sys/sysinfo.h>
-    #include <unistd.h>
-
-    static int get_ncores(void)
-    {
-        return sysconf(_SC_NPROCESSORS_ONLN);
-    }
-
-    #define PLATFORM PLATFORM_SUPPORTED
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-    #include <stdlib.h>
-    #include <sys/types.h>
-    #include <sys/sysctl.h>
-
-    int get_ncores(void){
-        int num;
-        size_t oldsize;
-
-        sysctlbyname("hw.ncpu",NULL,&oldsize,NULL,0);
-        if(sizeof(num)!=oldsize)
-            return 0;
-
-        sysctlbyname("hw.ncpu",&num,&oldsize,NULL,0);
-
-        return num;
-    }
-
-    #define PLATFORM PLATFORM_SUPPORTED
-#else
-    #ifdef GET_TOTAL_CPUS_DEFINED
-      static int get_ncores(void)
-      {
-          return get_total_cpus(void);
-      }
-      #define PLATFORM PLATFORM_SUPPORTED
-    #else
-      #define PLATFORM PLATFORM_ERROR
-
-    #endif
-
-#endif
-
-
 
 int cpu_hardware_info(double *clock, int *nnodes, int *ncores)
 {
@@ -135,3 +82,4 @@ SEXP main_cpuid_info()
 
     return RET;
 }
+

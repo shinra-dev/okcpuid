@@ -13,7 +13,7 @@ cpuid/libcpuid/recog_amd.o \
 cpuid/libcpuid/rdtsc.o \
 cpuid/libcpuid/asm-bits.o \
 cpuid/libcpuid/libcpuid_util.o \
-cpuid_test.o \
+getcores.o \
 hardware_info.o
 
 
