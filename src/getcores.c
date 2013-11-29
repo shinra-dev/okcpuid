@@ -5,11 +5,7 @@
 // Copyright 2013, Schmidt, Heckendorf
 
 #include "cpuid.h"
-
 #include "cpuid/libcpuid/libcpuid.h"
-
-#include <string.h>
-#include <stdio.h>
 
 
 #if defined(__linux__)

@@ -5,11 +5,7 @@
 // Copyright 2013, Schmidt, Heckendorf
 
 #include "cpuid.h"
-
 #include "cpuid/libcpuid/libcpuid.h"
-
-#include <string.h>
-#include <stdio.h>
 
 
 int cpu_hardware_info(double *clock, int *nnodes, int *ncores)
