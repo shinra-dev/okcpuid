@@ -41,7 +41,7 @@ setGeneric(name="unit.names<-",
 
 ### Swaps
 setGeneric(name="swap.unit",
-  function(x, unit, precedence=.PRECEDENCE)
+  function(x, unit)
     standardGeneric("swap.unit"),
   package="cpuid"
 )
