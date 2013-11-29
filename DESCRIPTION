@@ -8,7 +8,7 @@ Authors@R: c(person("Drew", "Schmidt", role = c("aut"), email =
         "schmidt@math.utk.edu"), person("Wei-Chen", "Chen", role="ctb"),
         person("Christian", "Heckendorf", role = "ctb"))
 Description: cpuid
-License: BSD
+License: FreeBSD License
 NeedsCompilation: Yes
 LazyData: yes
 LazyLoad: yes
