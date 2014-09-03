@@ -1,21 +1,26 @@
-### Setup R source code and objects.
+R_SCMD = ${R_HOME}/bin${R_ARCH_BIN}/Rscript -e
+
+RNACI_CPPFLAGS = $(shell ${R_SCMD} "RNACI:::cppflags()")
+RNACI_LDFLAGS = $(shell ${R_SCMD} "RNACI:::ldflags()")
+
+PKG_CPPFLAGS = $(RNACI_CPPFLAGS)
 PKG_CFLAGS = -w
+PKG_LIBS = $(RNACI_LDFLAGS)
 
-### For user configuration.
-USER_CONF = Makeconf
-
-### For libcpuid
-R_OBJS = \
-cpuid/libcpuid/cpuid_main.o  \
-cpuid/libcpuid/recog_intel.o  \
-cpuid/libcpuid/recog_amd.o \
-cpuid/libcpuid/rdtsc.o \
-cpuid/libcpuid/asm-bits.o \
-cpuid/libcpuid/libcpuid_util.o \
-cpuid_test.o
+CPUID_OBJS = \
+	cpuid/libcpuid/cpuid_main.o \
+	cpuid/libcpuid/recog_intel.o \
+	cpuid/libcpuid/recog_amd.o \
+	cpuid/libcpuid/rdtsc.o \
+	cpuid/libcpuid/asm-bits.o \
+	cpuid/libcpuid/libcpuid_util.o \
+	cpuidlite/getcores.o
 
 
-OBJECTS = ${R_OBJS}
+R_OBJS = wrappers.o
+
+
+OBJECTS = ${CPUID_OBJS} ${R_OBJS}
 
 
 ### Start making here.

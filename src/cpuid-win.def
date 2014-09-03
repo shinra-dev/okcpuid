@@ -35,4 +35,4 @@ EXPORTS
  match_cpu_codename
  match_features
  warnf
- cpuid_test
+ main_cpuid_info

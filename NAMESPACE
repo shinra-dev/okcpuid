@@ -2,11 +2,6 @@ useDynLib(cpuid)
 
 import(methods)
 
-# All internal functions
-exportPattern("^[[:alpha:]]+")
-
+export(cpu_id, cpu_ins, cpu_clock, flops)
 exportClasses("flops")
-
-exportMethods(
-  "print", "show"
-)
+exportMethods("print", "show")

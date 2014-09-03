@@ -1,53 +1,69 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+/*
+ *  Copyright (c) 2013  Heckendorf
+ *  Copyright (c) 2013-2014  Schmidt
+ *  All rights reserved.
+ *  
+ *  Redistribution and use in source and binary forms, with or without 
+ *  modification, are permitted provided that the following conditions are met:
+ *  
+ *  1. Redistributions of source code must retain the above copyright notice, 
+ *  this list of conditions and the following disclaimer.
+ *  
+ *  2. Redistributions in binary form must reproduce the above copyright 
+ *  notice, this list of conditions and the following disclaimer in the 
+ *  documentation and/or other materials provided with the distribution.
+ *  
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+ *  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ *  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+ *  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+ *  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+ *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
-// Copyright 2013, Schmidt, Heckendorf
 
-#include "cpuid.h"
 #include "cpuid/libcpuid/libcpuid.h"
+#include "platform.h"
 
 
-#if defined(__linux__)
-    #include <sys/sysinfo.h>
-    #include <unistd.h>
+int get_ncores()
+{
+  #if OS_LINUX
+  return sysconf(_SC_NPROCESSORS_ONLN);
+  
+  #elif OS_BSD
+  int num;
+  size_t oldsize;
+  
+  sysctlbyname("hw.ncpu", NULL, &oldsize, NULL, 0);
+  if(sizeof(num) != oldsize)
+    return 0;
+  
+  sysctlbyname("hw.ncpu", &num, &oldsize, NULL, 0);
+  
+  return num;
+  
+  #elif OS_WINDOWS
+  SYSTEM_INFO sysinfo;
+  GetSystemInfo(&sysinfo);
+  
+  return (int) sysinfo.dwNumberOfProcessors;
+  
+/*  #else*/
+/*    #ifdef GET_TOTAL_CPUS_DEFINED*/
+/*    return get_total_cpus();*/
+/*    #else*/
+/*    return -1;*/
+/*    #endif*/
+/*  #endif*/
+  #else
+  return PLATFORM_ERROR;
+  #endif
+}
 
-    int get_ncores(void)
-    {
-        return sysconf(_SC_NPROCESSORS_ONLN);
-    }
-
-    PLATFORM = PLATFORM_SUPPORTED;
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-    #include <stdlib.h>
-    #include <sys/types.h>
-    #include <sys/sysctl.h>
-
-    int get_ncores(void){
-        int num;
-        size_t oldsize;
-
-        sysctlbyname("hw.ncpu",NULL,&oldsize,NULL,0);
-        if(sizeof(num)!=oldsize)
-            return 0;
-
-        sysctlbyname("hw.ncpu",&num,&oldsize,NULL,0);
-
-        return num;
-    }
-
-    PLATFORM = PLATFORM_SUPPORTED;
-#else
-    #ifdef GET_TOTAL_CPUS_DEFINED
-      int get_ncores(void)
-      {
-          return get_total_cpus(void);
-      }
-      PLATFORM = PLATFORM_SUPPORTED;
-    #else
-      PLATFORM = PLATFORM_ERROR;
-
-    #endif
-
-#endif
 

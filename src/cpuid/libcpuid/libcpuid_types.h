@@ -1,4 +1,5 @@
 /*
+ * Copyright 2014  Drew Schmidt
  * Copyright 2008  Veselin Georgiev,
  * anrieffNOSPAM @ mgail_DOT.com (convert to gmail)
  *
@@ -32,24 +33,26 @@
 #ifndef __LIBCPUID_TYPES_H__
 #define __LIBCPUID_TYPES_H__
 
+#include <stdint.h>
+
 #if defined(HAVE_STDINT_H)
 #  include <stdint.h>
 #else
-/* we have to provide our own: */
-#  if !defined(HAVE_INT32_T) && !defined(__int32_t_defined)
-typedef int int32_t;
-#  endif
+///* we have to provide our own: */
+//#  if !defined(HAVE_INT32_T) && !defined(__int32_t_defined)
+//typedef int int32_t;
+//#  endif
 
-#  if !defined(HAVE_UINT32_T) && !defined(__uint32_t_defined)
-typedef unsigned uint32_t;
-#  endif
+//#  if !defined(HAVE_UINT32_T) && !defined(__uint32_t_defined)
+//typedef unsigned uint32_t;
+//#  endif
 
-typedef signed char		int8_t;
-typedef unsigned char		uint8_t;
-typedef signed short		int16_t;
-typedef unsigned short		uint16_t;
-typedef signed long long	int64_t;
-typedef unsigned long long	uint64_t;
+//typedef signed char		int8_t;
+//typedef unsigned char		uint8_t;
+//typedef signed short		int16_t;
+//typedef unsigned short		uint16_t;
+//typedef signed long long	int64_t;
+//typedef unsigned long long	uint64_t;
 
 #endif
 
