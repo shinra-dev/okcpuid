@@ -1,3 +1,3 @@
-cpuid       cpuid   Basic cpuid functionality.
-linpack     cpuid   Linpack benchmark using (possibly serial) BLAS attached to R.
-pbdlinpack  cpuid   Linpack benchmark using the pbdDMAT package for distributed linear algebra.
+cpuid       Rcpuid  Basic cpuid functionality.
+linpack     Rcpuid  Linpack benchmark using (possibly serial) BLAS attached to R.
+pbdlinpack  Rcpuid  Linpack benchmark using the pbdDMAT package for distributed linear algebra.

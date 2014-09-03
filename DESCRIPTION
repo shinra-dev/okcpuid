@@ -1,9 +1,9 @@
-Package: cpuid
+Package: Rcpuid
 Title: Interface to cpuid
-Description: This package offers the cpuid() function, which returns
-      the number of available nodes, number of cores, cpu clock, and
-      an estimated peak number of FLOPS.
-Version: 0.1-1
+Description: This package offers several utilities for looking up
+      basic CPU information, such as the number of cores, cpu clock,
+      and an estimated peak number of FLOPS.
+Version: 0.2-0
 Depends: R (>= 2.14.0), utils, methods
 LinkingTo: RNACI
 Enhances: pbdMPI, pbdDMAT

@@ -1,6 +1,6 @@
 cpu_id <- function()
 {
-  ret <- .Call("Rcpuid_cpuid", PACKAGE="cpuid")
+  ret <- .Call("Rcpuid_cpuid", PACKAGE="Rcpuid")
   
   return( ret )
 }
@@ -9,7 +9,7 @@ cpu_id <- function()
 
 cpu_ins <- function()
 {
-  ret <- .Call("Rcpuid_available_instructions", PACKAGE="cpuid")
+  ret <- .Call("Rcpuid_available_instructions", PACKAGE="Rcpuid")
   
   return( ret )
 }
@@ -18,7 +18,7 @@ cpu_ins <- function()
 
 cpu_clock <- function()
 {
-  ret <- .Call("Rcpuid_cpuid_info", PACKAGE="cpuid")
+  ret <- .Call("Rcpuid_cpuid_info", PACKAGE="Rcpuid")
   
   class(ret$clock.os) <- "MHz"
   class(ret$clock.tested) <- "MHz"
