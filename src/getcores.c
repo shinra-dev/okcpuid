@@ -36,7 +36,7 @@ int get_ncores()
   #if OS_LINUX
   return sysconf(_SC_NPROCESSORS_ONLN);
   
-  #elif OS_BSD
+  #elif OS_BSD || OS_MAC
   int num;
   size_t oldsize;
   
@@ -54,13 +54,6 @@ int get_ncores()
   
   return (int) sysinfo.dwNumberOfProcessors;
   
-/*  #else*/
-/*    #ifdef GET_TOTAL_CPUS_DEFINED*/
-/*    return get_total_cpus();*/
-/*    #else*/
-/*    return -1;*/
-/*    #endif*/
-/*  #endif*/
   #else
   return PLATFORM_ERROR;
   #endif

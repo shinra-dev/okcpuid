@@ -30,6 +30,9 @@
 #define __CPUID_PLATFORM__
 
 
+#define PLATFORM_ERROR -1
+
+
 // "portability"
 #define OS_LINUX (defined(__gnu_linux__) || defined(__linux__) || defined(__linux) || defined(linux))
 
@@ -46,8 +49,6 @@
 
 
 
-
-
 #if OS_LINUX
 
 #include <sys/sysinfo.h>
@@ -56,8 +57,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-
 
 
 #elif OS_MAC
@@ -72,9 +71,6 @@
 #include <sys/param.h>
 #include <sys/mount.h>
 
-int sysctl_val(char *name, uint64_t *val);
-
-
 
 #elif OS_WINDOWS
 
@@ -82,7 +78,6 @@ int sysctl_val(char *name, uint64_t *val);
 #include <stdio.h>
 #include <tchar.h>
 #include <Psapi.h>
-
 
 
 #elif OS_BSD
@@ -93,11 +88,6 @@ int sysctl_val(char *name, uint64_t *val);
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <vm/vm_param.h>
-
-int sysctl_mib(char *name, int *mib, size_t *mibsize);
-int sysctlmib_val(int *mib, size_t mibsize, void *data, size_t *datasize);
-int sysctl_val(char *name, uint64_t *val);
-
 
 
 #elif OS_NIX

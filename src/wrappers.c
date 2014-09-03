@@ -20,26 +20,29 @@ SEXP Rcpuid_cpuid_info()
   R_INIT;
   int ops_per_cycle;
   
-  SEXP ncores, clock, peak;
+  SEXP ncores, clock_os, clock_tested, peak;
   SEXP RET, RET_NAMES;
   
   newRvec(ncores, 1, "int");
-  newRvec(clock, 1, "dbl");
+  newRvec(clock_os, 1, "int");
+  newRvec(clock_tested, 1, "int");
   newRvec(peak, 1, "dbl");
   
   INT(ncores) = get_ncores();
   
-  DBL(clock) = cpu_clock_measure(200, 0);
+  INT(clock_os) = cpu_clock_by_os();
+  
+  INT(clock_tested) = cpu_clock_measure(200, 0);
   
   
   // 4 for single, 2 for double
   ops_per_cycle = 2;
   
-  DBL(peak) = (double) (ops_per_cycle * INT(ncores)) * DBL(clock);
-/*  cpu_clock_by_os()*/
+  DBL(peak) = (double) (ops_per_cycle * INT(ncores) * INT(clock_tested));
   
-  RET_NAMES = make_list_names(3, "ncores", "clock", "peak");
-  RET = make_list(RET_NAMES, 3, ncores, clock, peak);
+  
+  RET_NAMES = make_list_names(4, "ncores", "clock.os", "clock.tested", "peak");
+  RET = make_list(RET_NAMES, 4, ncores, clock_os, clock_tested, peak);
   
   R_END;
   return RET;

@@ -20,7 +20,9 @@ cpu_clock <- function()
 {
   ret <- .Call("Rcpuid_cpuid_info", PACKAGE="cpuid")
   
-  class(ret$clock) <- "MHz"
+  class(ret$clock.os) <- "MHz"
+  class(ret$clock.tested) <- "MHz"
+  
   ret$peak <- flops(size=ret$peak, unit="mflops")
   
   return( ret )
