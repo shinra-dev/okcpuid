@@ -1,4 +1,4 @@
-library(cpuid)
+library(Rcpuid)
 
 
 # Vendor name, processor codename, processor brand

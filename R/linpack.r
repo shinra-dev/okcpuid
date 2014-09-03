@@ -1,5 +1,12 @@
 linpack <- function(A, B)
 {
+  if (nrow(A) != ncol(A))
+    stop("Matrix 'A' must be square")
+  if (nrow(A) != nrow(B))
+    stop("Matrix 'B' must have as nrow(A) rows")
+  
+  N <- nrow(A)
+  
   time <- system.time( X <- solve(A, B) )[3]
 #  time <- allreduce(time, op='max')
   
@@ -10,7 +17,7 @@ linpack <- function(A, B)
   peak_lin <- flops(size=size, unit="MFLOPS")
   
   
-  cpuinfo <- cpuid()
+  cpuinfo <- cpu_clock()
   peak_theo <- cpuinfo$peak
   
   return(list(linpack=peak_lin, theoretical=peak_theo))

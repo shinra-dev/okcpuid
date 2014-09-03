@@ -1,3 +1,8 @@
+// 2014 Schmidt: stdio functions turned into R-acceptable versions.
+#include <R.h>
+#include <Rinternals.h>
+
+
 /*
  * Copyright 2008  Veselin Georgiev,
  * anrieffNOSPAM @ mgail_DOT.com (convert to gmail)
@@ -43,7 +48,7 @@ void match_features(const struct feature_map_t* matchtable, int count, uint32_t 
 
 static void default_warn(const char *msg)
 {
-	fprintf(stderr, "%s", msg);
+	warning("%s", msg);
 }
 
 libcpuid_warn_fn_t _warn_fun = default_warn;

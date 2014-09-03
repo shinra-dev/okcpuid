@@ -1,10 +1,31 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+/*
+ *  Copyright (c) 2013-2014  Schmidt
+ *  All rights reserved.
+ *  
+ *  Redistribution and use in source and binary forms, with or without 
+ *  modification, are permitted provided that the following conditions are met:
+ *  
+ *  1. Redistributions of source code must retain the above copyright notice, 
+ *  this list of conditions and the following disclaimer.
+ *  
+ *  2. Redistributions in binary form must reproduce the above copyright 
+ *  notice, this list of conditions and the following disclaimer in the 
+ *  documentation and/or other materials provided with the distribution.
+ *  
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+ *  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ *  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+ *  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+ *  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+ *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
-// Copyright 2013-2014, Schmidt
 
-#include "cpuid.h"
 #include "cpuid/libcpuid/libcpuid.h"
 #include <RNACI.h>
 
@@ -13,15 +34,26 @@ int get_ncores();
 int cpuid_get_raw_data(struct cpu_raw_data_t* data);
 int cpu_identify(struct cpu_raw_data_t* raw, struct cpu_id_t* data);
 
+#define CHECK_ERROR_RAW \
+  if (cpuid_get_raw_data(&raw) < 0)\
+    error("Internal libcpuid error; unable to get the raw data.\n");
+
+#define CHECK_ERROR_DATA \
+  if (cpu_identify(&raw, &data) < 0) \
+    error("Internal libcpuid error; CPU identification failed.\n");
 
 
 SEXP Rcpuid_cpuid_info()
 {
   R_INIT;
+  struct cpu_raw_data_t raw;
+  struct cpu_id_t data;
   int ops_per_cycle;
-  
   SEXP ncores, clock_os, clock_tested, peak;
   SEXP RET, RET_NAMES;
+  
+  CHECK_ERROR_RAW;
+  CHECK_ERROR_DATA;
   
   newRvec(ncores, 1, "int");
   newRvec(clock_os, 1, "int");
@@ -35,8 +67,8 @@ SEXP Rcpuid_cpuid_info()
   INT(clock_tested) = cpu_clock_measure(200, 0);
   
   
-  // 4 for single, 2 for double
-  ops_per_cycle = 2;
+  // 2 for double, 4 for single
+  ops_per_cycle = 2 * (data.flags[CPU_FEATURE_SSE2] ? 2 : 1);
   
   DBL(peak) = (double) (ops_per_cycle * INT(ncores) * INT(clock_tested));
   
@@ -58,12 +90,8 @@ SEXP Rcpuid_available_instructions()
   SEXP mmx, mmxext, sse, sse2;
   SEXP ret, ret_names;
   
-  if (cpuid_get_raw_data(&raw) < 0)
-    error("Sorry, cannot get the CPUID raw data.\n");
-  
-  if (cpu_identify(&raw, &data) < 0)
-    error("Sorrry, CPU identification failed.\n");
-  
+  CHECK_ERROR_RAW;
+  CHECK_ERROR_DATA;
   
   newRvec(mmx,    1, "str");
   newRvec(mmxext, 1, "str");
@@ -92,12 +120,8 @@ SEXP Rcpuid_cpuid()
   SEXP vendor, codename, brand;
   SEXP ret, ret_names;
   
-  if (cpuid_get_raw_data(&raw) < 0)
-    error("Sorry, cannot get the CPUID raw data.\n");
-  
-  if (cpu_identify(&raw, &data) < 0)
-    error("Sorrry, CPU identification failed.\n");
-  
+  CHECK_ERROR_RAW;
+  CHECK_ERROR_DATA;
   
   newRvec(vendor,   1, "str");
   newRvec(codename, 1, "str");
@@ -113,6 +137,5 @@ SEXP Rcpuid_cpuid()
   R_END;
   return ret;
 }
-
 
 

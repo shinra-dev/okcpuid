@@ -1,7 +1,7 @@
 if (interactive())
   stop("This benchmark may not be run interactively.")
 
-library(cpuid, quietly=TRUE)
+library(Rcpuid, quietly=TRUE)
 
 library(pbdMPI, quietly=TRUE)
 library(pbdDMAT, quietly=TRUE)

@@ -1,0 +1,104 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Introducing Rfiglet}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(Rfiglet)
+options(scipen = 3)
+knitr::opts_chunk$set(
+  comment = NA,
+  error   = FALSE,
+  tidy    = FALSE)
+```
+
+```{r, echo=FALSE}
+library(Rcpuid)
+
+font <- "standard"
+header <- c(figlet("Introducing", font=font), figlet("Rcpuid", font=font))
+class(header) <- "figlet"
+
+header
+```
+
+*Drew Schmidt* 
+<br><br>
+
+# Rcpuid
+
+[libcpuid](http://libcpuid.sourceforge.net/)
+is a cross-platform C library for x86 CPU detection.
+The [Rcpuid](https://github.com/wrathematics/Rcpuid)
+package is a set of R bindings (and a few minor 
+improvements) for cpuid.  Along with some helper utilities, the 
+package offers three main functions:  `cpu_clock()`, `cpu_id()`,
+and `cpu_ins()`.
+
+
+
+## CPU Clock
+
+The return is a list containing the total number
+of cores detected on the system (note: only cores available on the
+calling node are detected), the CPU clock in MHz as reported by the
+operating system (more on this later), the CPU clock in MHz as 
+detected by a simple test, and the estimated peak FLOPS.
+
+```{r}
+library(Rcpuid)
+
+cpu_clock()
+```
+
+Why the two reports of CPU clock, you may be wondering.  The reason 
+is, all modern operating systems downscale CPU clocks when they're
+not very busy, and upscale when there's work to do.  Ostensibly this
+is a power/energy-saving feature; in reality, these features
+tend to not work very well.  Generally you can expect your system to 
+underperform for almost no energy savings...but it makes people
+feel good, so here we are.
+
+So you will probably see a huge discrepancy between the value
+reported by the OS and the value reported by the test.  For example, 
+when using the "ondemand" CPU governor (Linux), my OS reports that
+my clock is 830 MHz.  But when I set the governor to performance,
+the OS reports 2159 MHz, which isn't too far from the tested value
+of 2166 MHz.
+
+It's worth noting that given how the modern CPU works, this value
+is mostly (but not entirely) worthless; the above is just one
+demonstration.
+
+
+
+## CPU Identification
+
+Rcpuid can also identify your CPU vendor, possibly your CPU codename, 
+and probably your CPU brand name:
+
+```{r}
+library(Rcpuid)
+
+cpu_id()
+```
+
+
+
+## CPU Instruction Sets
+
+Finally, we can easily see which instruction sets are available for
+your given architecture:
+
+```{r}
+library(Rcpuid)
+
+cpu_ins()
+```
+
+
+
+<br><br><br>
+![Creative Commons License](cc.png "Creative Commons License")
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
