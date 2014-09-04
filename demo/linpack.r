@@ -24,12 +24,23 @@ benchmark.linpack <- function()
   if (N.bottom > N.top)
     stop("You don't have enough ram to do this on your potato of a compute")
   
+  Ns <- N <- N.bottom
+  while (N < N.top)
+  {
+    N <- 2L*N
+    if (N <= N.top)
+      Ns <- c(Ns, N)
+  }
+  
+  if (N > N.top)
+    Ns <- c(Ns, N.top)
+  
   R.max <- 0
   N.max <- 0
-  N <- N.bottom
   
-  while(N < N.top)
+  for (N in Ns)
   {
+    print(N)
     A <- matrix(rnorm(N*N), N, N)
     B <- matrix(rnorm(N*N), N, 1L)
     test <- Rcpuid:::linpack(A=A, B=B)
@@ -45,23 +56,6 @@ benchmark.linpack <- function()
     
     N <- N*2L
   }
-  
-  N <- N/2L
-  
-  if (N < N.top)
-  {
-    N <- N.top
-    A <- matrix(rnorm(N*N), N, N)
-    B <- matrix(rnorm(N*N), N, 1L)
-    test <- Rcpuid:::linpack(A=A, B=B)
-    
-    if (test > R.max)
-    {
-      R.max <- test
-      N.max <- N
-    }
-  }
-  
   
   R.max <- Rcpuid:::flops(R.max, "GFLOPS")
   
