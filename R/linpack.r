@@ -1,3 +1,15 @@
+solve_nocopy <- function(A, B)
+{
+  if (!is.double(A))
+    storage.mode(A) <- "double"
+  if (!is.double(B))
+    storage.mode(B) <- "double"
+  
+  .Call("R_solve_nocopy", A, B)
+}
+
+
+
 linpack <- function(A, B)
 {
   if (nrow(A) != ncol(A))
@@ -7,18 +19,14 @@ linpack <- function(A, B)
   
   N <- nrow(A)
   
-  time <- system.time( X <- solve(A, B) )[3]
+  time <- system.time( X <- solve_nocopy(A, B) )[3]
+  
 #  time <- allreduce(time, op='max')
   
-  rsd <- norm(type="F", A%*%X - B)
-  
   nops <- 2/3*N*N*N + 2*N*N
-  size <- nops / time / 1000000 # in MFLOPS
-  peak_lin <- flops(size=size, unit="MFLOPS")
+  size <- nops / time / 1000 # in GFLOPS
+  peak_lin <- flops(size=size, unit="GFLOPS")@size
   
   
-  cpuinfo <- cpu_clock()
-  peak_theo <- cpuinfo$peak
-  
-  return(list(linpack=peak_lin, theoretical=peak_theo))
+  return(peak_lin)
 }

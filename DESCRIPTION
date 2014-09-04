@@ -6,10 +6,11 @@ Description: This package offers several utilities for looking up
 Version: 0.2-0
 Depends: R (>= 2.14.0), utils, methods
 LinkingTo: RNACI
-Enhances: pbdMPI, pbdDMAT
+Enhances: memuse, pbdMPI, pbdDMAT
 License: BSD 2-clause License + file LICENSE
 Copyright: See cpuid/inst/cpuid_COPYING for files in cpuid/src/cpuid.
 NeedsCompilation: Yes
+ByteCompile: Yes
 LazyData: yes
 LazyLoad: yes
 Author: Drew Schmidt [aut, cre], Christian Heckendorf [ctb], Wei-Chen
