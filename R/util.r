@@ -1,7 +1,3 @@
-flops_error <- function() stop("Badly formed 'flops' object", call.=FALSE)
-
-
-
 # a * b^c
 intpow <- function(a, b, c)
 {
@@ -27,35 +23,17 @@ intpow <- function(a, b, c)
 
 
 
-convert_to_flops <- function(x)
-{
-  size <- x@size
-  
-  n <- which(tolower(x@unit) == .flops[[x@unit.names]][["check"]])
-  
-  size <- intpow(size, 10, .flops[["ordmag"]][n])
-  
-  x@size <- size
-  x@unit <- .flops[[x@unit.names]][["print"]][1L]
-  
-  return( x )
-}
-
-
-
 best_unit <- function(x)
 {
   f <- 1e3
   fun <- function(x) log10(abs(x))
   dgts <- 3
   
-  size <- convert_to_flops(x)@size
+  size <- x
+  class(size) <- NULL
   
   if (size == 0)
-  {
-    x@unit.names <- .flops[[x@unit.names]][["print"]][1L]
-    return( x )
-  }
+    return( .__Rcpuid_flops$names[1L] )
   
   
   num.digits <-fun(size)
@@ -64,15 +42,15 @@ best_unit <- function(x)
   {
     if (num.digits < dgts*i)
     {
-      unit <- .flops[i]
+      unit <- .__Rcpuid_flops$names[i]
       break
     }
   }
   
   size <- size/(f^(i-1))
   
-  x@size <- size
-  x@unit <- .flops[[x@unit.names]][["print"]][i]
+  ret <- list(size=size, name=.__Rcpuid_flops$names[i])
   
-  return( x )
+  return( ret )
 }
+

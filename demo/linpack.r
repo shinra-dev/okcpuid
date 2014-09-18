@@ -21,6 +21,9 @@ benchmark.linpack <- function()
   N.bottom <- 1000L
   N.top <- as.integer(howmany(Sys.meminfo()$totalram/1.5))[1L]
   
+  N.bottom <- 20000L
+  N.top <- 20000L
+  
   if (N.bottom > N.top)
     stop("You don't have enough ram to do this on your potato of a compute")
   

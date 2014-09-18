@@ -23,7 +23,7 @@ cpu_clock <- function()
   class(ret$clock.os) <- "MHz"
   class(ret$clock.tested) <- "MHz"
   
-  ret$peak <- flops(size=ret$peak, unit="mflops")
+  ret$peak <- flops(size=ret$peak*1e6, unit="mflops")
   
   return( ret )
 }
