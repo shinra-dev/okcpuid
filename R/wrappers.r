@@ -7,9 +7,12 @@ cpu_id <- function()
 
 
 
-cpu_ins <- function()
+cpu_ins <- function(ret.logical=FALSE)
 {
   ret <- .Call("Rcpuid_available_instructions", PACKAGE="Rcpuid")
+  
+  if (ret.logical)
+    ret <- sapply(ret, function(i) if (i=="present") TRUE else FALSE)
   
   return( ret )
 }

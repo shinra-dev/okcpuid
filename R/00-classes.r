@@ -1,2 +1,2 @@
 setOldClass("flops")
-setClass("MHz", representation="VIRTUAL")
+setOldClass("MHz")
