@@ -5,7 +5,7 @@ RNACI_LDFLAGS = $(shell ${R_SCMD} "RNACI:::ldflags()")
 
 PKG_CPPFLAGS = $(RNACI_CPPFLAGS)
 PKG_CFLAGS = -w
-PKG_LIBS = $(RNACI_LDFLAGS)
+PKG_LIBS = $(RNACI_LDFLAGS) $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 CPUID_OBJS = \
 	cpuid/libcpuid/cpuid_main.o \

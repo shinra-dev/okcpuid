@@ -1,5 +1,5 @@
 Package: Rcpuid
-Title: Interface to cpuid
+Title: Interface to the cpuid library
 Description: This package offers several utilities for looking up
       basic CPU information, such as the number of cores, cpu clock,
       and an estimated peak number of FLOPS.

@@ -3,5 +3,3 @@ useDynLib(Rcpuid)
 import(methods)
 
 export(cpu_id, cpu_ins, cpu_clock, flops)
-exportClasses("flops")
-exportMethods("print", "show")
