@@ -1,3 +1,0 @@
-.UNIT <- "best"
-
-.NAMES <- "short"
