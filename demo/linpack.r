@@ -1,5 +1,5 @@
 library(memuse, quietly=TRUE)
-library(Rcpuid, quietly=TRUE)
+library(okcpuid, quietly=TRUE)
 library(compiler, quietly=TRUE)
 
 
@@ -46,7 +46,7 @@ benchmark.linpack <- function()
     print(N)
     A <- matrix(rnorm(N*N), N, N)
     B <- matrix(rnorm(N*N), N, 1L)
-    test <- Rcpuid:::linpack(A=A, B=B)
+    test <- linpack(A=A, B=B)
     rm(A)
     rm(B)
     invisible(gc())

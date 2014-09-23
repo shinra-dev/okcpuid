@@ -1,10 +1,11 @@
+suppressPackageStartupMessages(library(okcpuid, quietly=TRUE))
+
+suppressPackageStartupMessages(library(pbdMPI, quietly=TRUE))
 if (interactive())
-  stop("This benchmark may not be run interactively.")
+  comm.stop("This benchmark may not be run interactively.")
 
-library(Rcpuid, quietly=TRUE)
 
-library(pbdMPI, quietly=TRUE)
-library(pbdDMAT, quietly=TRUE)
+suppressPackageStartupMessages(library(pbdDMAT, quietly=TRUE))
 init.grid()
 
 N <- 4500

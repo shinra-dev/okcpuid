@@ -1,4 +1,4 @@
-library(Rcpuid)
+library(okcpuid)
 
 
 # Vendor name, processor codename, processor brand
@@ -9,3 +9,4 @@ cpu_ins()
 
 # Cores, clock, and peak FLOPS
 cpu_clock()
+
