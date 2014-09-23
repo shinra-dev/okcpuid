@@ -10,7 +10,7 @@ solve_nocopy <- function(A, B)
 
 
 
-linpack <- function(A, B)
+linpack <- function(A, B, solvefun)
 {
   if (nrow(A) != ncol(A))
     stop("Matrix 'A' must be square")
@@ -19,7 +19,7 @@ linpack <- function(A, B)
   
   N <- nrow(A)
   
-  time <- system.time( X <- solve_nocopy(A, B) )[3]
+  time <- system.time( X <- solvefun(A=A, B=B) )[3]
   
 #  time <- allreduce(time, op='max')
   
