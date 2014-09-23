@@ -1,5 +1,5 @@
-useDynLib(Rcpuid)
+useDynLib(okcpuid)
 
 import(methods)
 
-export(cpu_id, cpu_ins, cpu_clock, flops)
+export(cpu_id, cpu_ins, cpu_clock, flops, linpack, solve_nocopy)

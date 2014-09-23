@@ -1,14 +1,14 @@
-Package: Rcpuid
+Package: okcpuid
 Title: Interface to the cpuid library
 Description: This package offers several utilities for looking up
       basic CPU information, such as the number of cores, cpu clock,
       and an estimated peak number of FLOPS.
-Version: 0.2-0
+Version: 0.2-1
 Depends: R (>= 2.14.0), utils, methods
 LinkingTo: RNACI
 Enhances: memuse, pbdMPI, pbdDMAT
 License: BSD 2-clause License + file LICENSE
-Copyright: See cpuid/inst/cpuid_COPYING for files in cpuid/src/cpuid.
+Copyright: See okcpuid/inst/cpuid_COPYING for files in okcpuid/src/cpuid.
 NeedsCompilation: Yes
 ByteCompile: Yes
 LazyData: yes
