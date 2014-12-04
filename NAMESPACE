@@ -1,4 +1,8 @@
-useDynLib(okcpuid)
+useDynLib("okcpuid",
+  Rcpuid_cpuid,
+  Rcpuid_available_instructions,
+  Rcpuid_cpuid_info
+)
 
 import(methods)
 
