@@ -5,7 +5,8 @@ PKG_CPPFLAGS = $(RNACI_CPPFLAGS)
 PKG_CFLAGS = -w
 PKG_LIBS = $(RNACI_LDFLAGS) $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
-CPUID_OBJS = \
+
+R_OBJS = \
 	cpuid/libcpuid/cpuid_main.o \
 	cpuid/libcpuid/recog_intel.o \
 	cpuid/libcpuid/recog_amd.o \
@@ -13,13 +14,11 @@ CPUID_OBJS = \
 	cpuid/libcpuid/asm-bits.o \
 	cpuid/libcpuid/libcpuid_util.o \
 	getcores.o \
-	linpack.o
+	linpack.o \
+	wrappers.o
 
 
-R_OBJS = wrappers.o
-
-
-OBJECTS = ${CPUID_OBJS} ${R_OBJS}
+OBJECTS = ${R_OBJS}
 
 
 ### Start making here.

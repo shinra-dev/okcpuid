@@ -4,7 +4,7 @@ Description: This package offers several utilities for looking up
       basic CPU information, such as the number of cores, cpu clock,
       and an estimated peak number of FLOPS.
 Version: 0.2-1
-Depends: R (>= 2.14.0), utils, methods
+Depends: R (>= 2.14.0)
 LinkingTo: RNACI
 Enhances: memuse, pbdMPI, pbdDMAT
 License: BSD 2-clause License + file LICENSE

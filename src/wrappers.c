@@ -43,7 +43,7 @@ int cpu_identify(struct cpu_raw_data_t* raw, struct cpu_id_t* data);
     error("Internal libcpuid error; CPU identification failed.\n");
 
 
-SEXP Rcpuid_cpuid_info()
+SEXP okcpuid_cpuid_info()
 {
   R_INIT;
   struct cpu_raw_data_t raw;
@@ -82,7 +82,7 @@ SEXP Rcpuid_cpuid_info()
 
 
 
-SEXP Rcpuid_available_instructions()
+SEXP okcpuid_available_instructions()
 {
   R_INIT;
   struct cpu_raw_data_t raw;
@@ -112,7 +112,7 @@ SEXP Rcpuid_available_instructions()
 
 
 
-SEXP Rcpuid_cpuid()
+SEXP okcpuid_cpuid()
 {
   R_INIT;
   struct cpu_raw_data_t raw;

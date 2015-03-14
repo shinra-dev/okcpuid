@@ -1,6 +1,6 @@
 /*
- *  Copyright (c) 2013  Heckendorf
  *  Copyright (c) 2013-2014  Schmidt
+ *  Copyright (c) 2013  Heckendorf
  *  All rights reserved.
  *  
  *  Redistribution and use in source and binary forms, with or without 
