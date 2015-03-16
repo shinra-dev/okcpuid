@@ -5,6 +5,17 @@
 
 
 
+unflop <- function(x)
+{
+  unit <- attr(x, "unit")
+  index <- which(.__Rcpuid_flops$names == unit)
+  ordmag <- .__Rcpuid_flops$ordmag[index]
+  
+  return( as.numeric(x) * 10^ordmag)
+}
+
+
+
 find_unit <- function(unit)
 {
   unit <- match.arg(toupper(unit), .__Rcpuid_flops$names)

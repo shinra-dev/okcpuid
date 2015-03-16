@@ -5,9 +5,56 @@
 \alias{linpack_benchmark}
 \title{Linpack Benchmark}
 \usage{
-linpack()
+linpack(nmin = 1000, nmax = "choose", by = "doubling", warn = TRUE)
+}
+\arguments{
+\item{nmin}{Minimum problem size.}
+
+\item{nmax}{Maximum problem size.  Value should either be an integer greater
+than \code{nmin} or it should be the string "choose".  In the
+former case, the supplied value will be the largest value
+considered.  In the latter case, the largest problem size will
+be 2/3 of max system ram.}
+
+\item{by}{How to get from nmin to nmax.  Value should either be a numeric
+value greater than 0, or it should be the string "doubling".  In
+the former case, \code{seq.int()} is used, while in the latter,
+values starting with nmin will be doubled until nmax is
+reached/surpassed.}
+
+\item{warn}{A warning that I very seriously want you to read.  Set
+\code{warnme=FALSE} to disable after you have read it.}
+}
+\value{
+The return is a list (formally an S3 'linpack' object), containing:
+\tabular{ll}{
+   R.max \tab The max
+}
 }
 \description{
-TODO
+The Linpack benchmark is the standard performance benchmark
+for numerical computing.  Research institutions, governments,
+and companies with very large computing resources "compete" to
+build machines that will perform the best on the benchmark.
+Results of this competition are released twice a year, in
+June and in November, at the ISC and SC conferences, respectively.
+Although it is generally understood that Linpack no longer
+adequately measures the performance capabilities of a system
+on real problems, it has remained an important measurement
+all the same.  One of the most attractive things
+about the Linpack benchmark is its host of historical data,
+which dates back all the way to 1993.
+}
+\details{
+If you are even somewhat serious about using this as a test of
+the host system's capabilities, I would strongly encourage you
+to run this exclusively; that is, shut down all other
+resource-intensive applications (web browsers, system updates,
+antivirus, whatever).  If a lot of your ram is used up by
+other utilities and the benchmarker has to swap them to disk,
+the performance will degrade by several orders of magnitude.
+}
+\references{
+\url{http://www.top500.org/project/linpack/}
 }
 

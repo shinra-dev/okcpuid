@@ -14,6 +14,8 @@
 #'    okcpuid_cpuid, okcpuid_available_instructions, okcpuid_cpuid_info,
 #'    R_solve_nocopy
 #' 
+#' @import memuse
+#' 
 #' @name Rcpuid-package
 #' @docType package
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}
