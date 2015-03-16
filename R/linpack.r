@@ -1,28 +1,19 @@
 solve_nocopy <- function(A, B)
 {
-  if (!is.double(A))
-    storage.mode(A) <- "double"
-  if (!is.double(B))
-    storage.mode(B) <- "double"
-  
-  .Call(R_solve_nocopy, A, B)
-}
-
-
-
-linpack <- function(A, B, solvefun)
-{
   if (nrow(A) != ncol(A))
     stop("Matrix 'A' must be square")
   if (nrow(A) != nrow(B))
     stop("Matrix 'B' must have as nrow(A) rows")
   
-  N <- nrow(A)
+  if (!is.double(A))
+    storage.mode(A) <- "double"
+  if (!is.double(B))
+    storage.mode(B) <- "double"
   
-  time <- system.time( X <- solvefun(A=A, B=B) )[3]
-  
+  time <- system.time( X <- .Call(R_solve_nocopy, A, B) )[3]
 #  time <- allreduce(time, op='max')
   
+  N <- nrow(A)
   nops <- 2/3*N*N*N + 2*N*N
   flops <- nops / time / 1000
   
@@ -38,7 +29,7 @@ linpack <- function(A, B, solvefun)
 #' @name linpack_benchmark
 #' @rdname linpack
 #' @export
-linpack_benchmark <- function()
+linpack <- function()
 {
   msg <- "
                 \\!/ Please read me \\!/\n
@@ -79,7 +70,7 @@ linpack_benchmark <- function()
     cat(N)
     A <- matrix(rnorm(N*N), N, N)
     B <- matrix(rnorm(N*N), N, 1L)
-    test <- linpack(A=A, B=B, solve_nocopy)
+    test <- solve_nocopy(A=A, B=B)
     rm(A)
     rm(B)
     invisible(gc())
@@ -129,7 +120,12 @@ print.linpack <- function(x, ..., digits=3)
   names <- title_case(x=names)
   spacenames <- simplify2array(lapply(names, function(str) paste0(str, ":", paste0(rep(" ", maxlen-nchar(str)), collapse=""))))
   
-  cat(paste(spacenames, sapply(x, round, digits=digits), sep=" ", collapse="\n"), "\n")
+  printfun <- function(x, digits)
+  {
+    capture.output(print(x, digits=digits))
+  }
+  
+  cat(paste(spacenames, sapply(x, printfun, digits=digits), sep=" ", collapse="\n"), "\n")
   invisible()
 }
 
@@ -142,7 +138,7 @@ print.linpack <- function(x, ..., digits=3)
 #' @param i
 #' Index.
 #' 
-#' rdname subset
+#' @rdname subset
 #' @export
 "[.linpack" <- function(x, i)
 {

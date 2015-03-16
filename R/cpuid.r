@@ -1,8 +1,6 @@
 #' CPU ID
 #' 
-#' .
-#' 
-#' .
+#' A utility to look up some basic information about the CPU.
 #' 
 #' @return 
 #' Returns a list containing: 
@@ -30,12 +28,9 @@ cpu_id <- function()
 
 
 
-
 #' CPU Instructions
 #' 
-#' .
-#' 
-#' .
+#' A utility to look up the presence/absence of some CPU instructions.
 #' 
 #' @param ret.logical 
 #' Logical; if \code{FALSE}, then the return values will be
@@ -44,9 +39,13 @@ cpu_id <- function()
 #' \code{FALSE} otherwise.
 #' 
 #' @return 
-#' Returns a list containing: \tabular{ll}{ mmx \tab MMX instruction
-#' set \cr mmx.extended \tab Extended MMX instruction set \cr sse \tab SSE
-#' instruction set \cr sse2 \tab SSE2 instruction set \cr }
+#' Returns a list containing: 
+#' \tabular{ll}{ 
+#'    mmx \tab MMX instruction set \cr 
+#'    mmx.extended \tab Extended MMX instruction set \cr 
+#'    sse \tab SSE instruction set \cr 
+#'    sse2 \tab SSE2 instruction set \cr 
+#' }
 #' 
 #' @seealso \code{\link{cpu_id}, \link{cpu_clock}}
 #' 
@@ -68,17 +67,11 @@ cpu_ins <- function(ret.logical=FALSE)
 }
 
 
-NULL
-
-
-
-
 
 #' CPU Clock
 #' 
-#' .
-#' 
-#' .
+#' A utility to look up some basic performance information about
+#' the CPU.
 #' 
 #' @return 
 #' Returns a list containing: 

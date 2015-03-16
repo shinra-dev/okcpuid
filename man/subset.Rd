@@ -9,9 +9,7 @@
 \arguments{
 \item{x}{linpack object.}
 
-\item{i}{Index.
-
-rdname subset}
+\item{i}{Index.}
 }
 \description{
 Subsets linpack outputs.

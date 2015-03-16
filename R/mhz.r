@@ -1,4 +1,11 @@
-#' @rdname print
+#' Print MHz Object
+#' 
+#' @param x
+#' MHz object
+#' @param ...
+#' Ignored.
+#' 
+#' @rdname print-mhz
 #' @export
 print.MHz <- function(x, ...)
 {

@@ -15,10 +15,7 @@ Returns a list containing:
 }
 }
 \description{
-.
-}
-\details{
-.
+A utility to look up some basic information about the CPU.
 }
 \examples{
 \dontrun{

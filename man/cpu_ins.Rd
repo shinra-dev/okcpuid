@@ -13,15 +13,16 @@ elements of the return list will be \code{TRUE} to indicate presence, and
 \code{FALSE} otherwise.}
 }
 \value{
-Returns a list containing: \tabular{ll}{ mmx \tab MMX instruction
-set \cr mmx.extended \tab Extended MMX instruction set \cr sse \tab SSE
-instruction set \cr sse2 \tab SSE2 instruction set \cr }
+Returns a list containing:
+\tabular{ll}{
+   mmx \tab MMX instruction set \cr
+   mmx.extended \tab Extended MMX instruction set \cr
+   sse \tab SSE instruction set \cr
+   sse2 \tab SSE2 instruction set \cr
+}
 }
 \description{
-.
-}
-\details{
-.
+A utility to look up the presence/absence of some CPU instructions.
 }
 \examples{
 \dontrun{
