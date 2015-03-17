@@ -9,7 +9,7 @@ Copyright: See okcpuid/inst/cpuid_COPYING for files in okcpuid/src/cpuid.
 Depends: R (>= 2.14.0)
 Imports: memuse
 LinkingTo: RNACI
-Enhances: memuse, pbdMPI, pbdDMAT
+Enhances: pbdMPI, pbdDMAT
 NeedsCompilation: Yes
 ByteCompile: Yes
 Authors@R: c(
