@@ -4,7 +4,14 @@
 \alias{cpu_clock}
 \title{CPU Clock}
 \usage{
-cpu_clock()
+cpu_clock(milis = 200, quad_check = FALSE)
+}
+\arguments{
+\item{milis}{The amount of time in miliseconds the clock test should run for.
+Recommended range is 10-1000.}
+
+\item{quad_check}{logical; if \code{TRUE}, the average of a best of four runs is
+returned.}
 }
 \value{
 Returns a list containing:
@@ -19,9 +26,15 @@ Returns a list containing:
 A utility to look up some basic performance information about
 the CPU.
 }
+\details{
+There may be a large difference between the CPU clock as reported
+by the OS and as discovered by the small test.  Modern operating
+systems keep the CPU clock scaled down to save power, and scale
+them up as needed.
+}
 \examples{
 \dontrun{
-library(Rcpuid, quietly=TRUE)
+library(okcpuid, quietly=TRUE)
 cpu_clock()
 }
 }

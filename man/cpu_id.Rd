@@ -19,7 +19,7 @@ A utility to look up some basic information about the CPU.
 }
 \examples{
 \dontrun{
-library(Rcpuid, quietly=TRUE)
+library(okcpuid, quietly=TRUE)
 cpu_id()
 }
 }

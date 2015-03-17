@@ -5,7 +5,8 @@
 \alias{linpack_benchmark}
 \title{Linpack Benchmark}
 \usage{
-linpack(nmin = 1000, nmax = "choose", by = "doubling", warn = TRUE)
+linpack(nmin = 1000, nmax = "choose", by = "doubling", warn = TRUE,
+  verbose = TRUE)
 }
 \arguments{
 \item{nmin}{Minimum problem size.}
@@ -22,8 +23,12 @@ the former case, \code{seq.int()} is used, while in the latter,
 values starting with nmin will be doubled until nmax is
 reached/surpassed.}
 
-\item{warn}{A warning that I very seriously want you to read.  Set
-\code{warnme=FALSE} to disable after you have read it.}
+\item{warn}{Logical; this controls the printing of a warning that I very
+seriously want you to read.  Set \code{warnme=FALSE} to disable
+after you have read it.}
+
+\item{verbose}{Logical; determines whether or not intermediate results should
+be printed.}
 }
 \value{
 The return is a list (formally an S3 'linpack' object), containing:

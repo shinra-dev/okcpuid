@@ -4,25 +4,27 @@
 \alias{flops}
 \title{Flops Constructor}
 \usage{
-flops(size = 0, unit = "best")
+flops(size = 0, unit)
 }
 \arguments{
-\item{size}{}
+\item{size}{A number of flops, scaled by the input unit unit.}
 
-\item{unit}{}
+\item{unit}{An SI unit of flops (e.g., MFLOPS for MegaFLOPS, GFLOPS for
+GigaFLOPS, etc.).}
 }
 \value{
 Returns a flops object.
 }
 \description{
-.
+Function to build a flops object.
 }
 \details{
-.
+This provides a simple way of representing flops, scaled by
+some SI unit (e.g., mega, giga, ...).
 }
 \examples{
 \dontrun{
-library(Rcpuid, quietly=TRUE)
+library(okcpuid, quietly=TRUE)
 flops(2000000) # 2 MFLOPS
 }
 }

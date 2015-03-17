@@ -26,7 +26,7 @@ A utility to look up the presence/absence of some CPU instructions.
 }
 \examples{
 \dontrun{
-library(Rcpuid, quietly=TRUE)
+library(okcpuid, quietly=TRUE)
 cpu_ins()
 }
 }
