@@ -1,6 +1,7 @@
 solve_nocopy <- function(problemsize)
 {
   N <- problemsize
+  
   ### Don't want to divide by 0 if someone submits a tiny problem
   for (power in 0:6)
   {
@@ -67,8 +68,12 @@ solve_nocopy <- function(problemsize)
 #' values starting with nmin will be doubled until nmax is 
 #' reached/surpassed.
 #' @param warn
-#' A warning that I very seriously want you to read.  Set 
-#' \code{warnme=FALSE} to disable after you have read it.
+#' Logical; this controls the printing of a warning that I very 
+#' seriously want you to read.  Set \code{warnme=FALSE} to disable 
+#' after you have read it.
+#' @param verbose
+#' Logical; determines whether or not intermediate results should
+#' be printed.
 #' 
 #' @return
 #' The return is a list (formally an S3 'linpack' object), containing:
@@ -81,10 +86,10 @@ solve_nocopy <- function(problemsize)
 #' @name linpack_benchmark
 #' @rdname linpack
 #' @export
-linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE)
+linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE, verbose=TRUE)
 {
   msg <- "
-                /!\\ Please read me /!\\\n
+                    /!\\ Please read me /!\\\n
   Running this without very efficient BLAS (e.g., MKL, OpenBLAS, ...)
   is a waste of time and will not give you a good sense of the 
   performance of your machine.  You are encouraged to investigate
@@ -93,6 +98,7 @@ linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE)
   
   assert_type(warn, "logical")
   if (warn) cat(msg)
+  assert_type(verbose, "logical")
   
   
   ### Checks
@@ -132,10 +138,11 @@ linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE)
   R.max <- 0
   N.max <- 0
   
-  cat("\n   N      R.max\n")
+  if (verbose) cat("\n   N      R.max\n")
+  
   for (N in Ns)
   {
-    cat(N)
+    if (verbose) cat(N)
     
     test <- solve_nocopy(problemsize=N)
     
@@ -145,13 +152,15 @@ linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE)
       N.max <- N
     }
     
-    cat("   ", R.max, "\n")
+    if (verbose)
+      cat("   ", R.max, "\n")
     
     N <- N*2L
   }
-  cat("\n")
   
-  R.max <- best_unit(R.max)
+  if (verbose) cat("\n")
+  
+  R.max <- flops(R.max)
   R.peak <- cpu_clock()$peak
   
   ret <- list(R.max=R.max, N.max=N.max, R.peak=R.peak)
@@ -190,7 +199,9 @@ summary.linpack <- function(object, ..., digits=3)
 #' @param digits
 #' Number of digits to print.
 #' 
+#' @name print-linpack
 #' @rdname print-linpack
+#' @method print linpack
 #' @export
 print.linpack <- function(x, ..., digits=3)
 {
