@@ -5,7 +5,9 @@
 #' @param ...
 #' Ignored.
 #' 
-#' @rdname print-mhz
+#' @name print-MHz
+#' @rdname print-MHz
+#' @method print MHz
 #' @export
 print.MHz <- function(x, ...)
 {
