@@ -5,7 +5,7 @@
 #' FLOPS.
 #' 
 #' \tabular{ll}{ 
-#'   Package: \tab Rcpuid \cr 
+#'   Package: \tab okcpuid \cr 
 #'   Type: \tab Package \cr 
 #'   License: \tab BSD 2-Clause \cr 
 #' }
@@ -16,7 +16,7 @@
 #' 
 #' @import memuse
 #' 
-#' @name Rcpuid-package
+#' @name okcpuid-package
 #' @docType package
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}
 #' @keywords Package
