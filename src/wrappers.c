@@ -43,7 +43,7 @@ int cpu_identify(struct cpu_raw_data_t* raw, struct cpu_id_t* data);
     error("Internal libcpuid error; CPU identification failed.\n");
 
 
-SEXP okcpuid_cpuid_info()
+SEXP okcpuid_cpuid_info(SEXP milis, SEXP quad_check)
 {
   R_INIT;
   struct cpu_raw_data_t raw;
@@ -64,7 +64,7 @@ SEXP okcpuid_cpuid_info()
   
   INT(clock_os) = cpu_clock_by_os();
   
-  INT(clock_tested) = cpu_clock_measure(200, 0);
+  INT(clock_tested) = cpu_clock_measure(INT(milis), INT(quad_check));
   
   
   // 2 for double, 4 for single

@@ -14,7 +14,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#' library(Rcpuid, quietly=TRUE)
+#' library(okcpuid, quietly=TRUE)
 #' cpu_id()
 #' }
 #' 
@@ -51,13 +51,14 @@ cpu_id <- function()
 #' 
 #' @examples
 #' \dontrun{
-#' library(Rcpuid, quietly=TRUE)
+#' library(okcpuid, quietly=TRUE)
 #' cpu_ins()
 #' }
 #' 
 #' @export
 cpu_ins <- function(ret.logical=FALSE)
 {
+  assert_type(ret.logical, "logical")
   ret <- .Call(okcpuid_available_instructions)
   
   if (ret.logical)
@@ -73,6 +74,19 @@ cpu_ins <- function(ret.logical=FALSE)
 #' A utility to look up some basic performance information about
 #' the CPU.
 #' 
+#' @details
+#' There may be a large difference between the CPU clock as reported
+#' by the OS and as discovered by the small test.  Modern operating
+#' systems keep the CPU clock scaled down to save power, and scale
+#' them up as needed.  
+#' 
+#' @param milis
+#' The amount of time in miliseconds the clock test should run for.
+#' Recommended range is 10-1000.
+#' @param quad_check
+#' logical; if \code{TRUE}, the average of a best of four runs is
+#' returned.
+#' 
 #' @return 
 #' Returns a list containing: 
 #' \tabular{ll}{ 
@@ -86,14 +100,18 @@ cpu_ins <- function(ret.logical=FALSE)
 #' 
 #' @examples
 #' \dontrun{
-#' library(Rcpuid, quietly=TRUE)
+#' library(okcpuid, quietly=TRUE)
 #' cpu_clock()
 #' }
 #' 
 #' @export
-cpu_clock <- function()
+cpu_clock <- function(milis=200, quad_check=FALSE)
 {
-  ret <- .Call(okcpuid_cpuid_info)
+  assert_type(milis, "int")
+  assert_val(milis > 0)
+  assert_type(quad_check, "logical")
+  
+  ret <- .Call(okcpuid_cpuid_info, as.integer(milis), quad_check)
   
   class(ret$clock.os) <- "MHz"
   class(ret$clock.tested) <- "MHz"
