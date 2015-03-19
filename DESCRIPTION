@@ -10,8 +10,8 @@ Depends: R (>= 2.14.0)
 Imports: memuse
 LinkingTo: RNACI
 Enhances: pbdMPI, pbdDMAT
-NeedsCompilation: Yes
-ByteCompile: Yes
+NeedsCompilation: yes
+ByteCompile: yes
 Authors@R: c(
     person("Drew", "Schmidt", email="wrathematics@gmail.com", role=c("aut", "cre")),
     person("Christian", "Heckendorf", role="ctb"),
