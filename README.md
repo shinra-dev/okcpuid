@@ -1,4 +1,4 @@
-# okcpuid
+# okcpuid [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid) [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 
 okcpuid is an R package that gives some basic cpu information (clock speed, number of cores, etc.).  
 The primary purpose of the package is to compute a reasonable estimate of the (theoretical) peak
