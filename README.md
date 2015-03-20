@@ -1,9 +1,7 @@
 # okcpuid [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid) [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 
 okcpuid is an R package that gives some basic cpu information (clock speed, number of cores, etc.).  
-The primary purpose of the package is to compute a reasonable estimate of the (theoretical) peak
-performance in the number of (double precision) floating point operations per second (FLOPS).
-
+It's ok.
 
 
 ## CPU Information
@@ -61,6 +59,23 @@ cpu_clock()
 For CPU cache information, see the
 [memuse](https://github.com/wrathematics/memuse) package.
 
+
+## The Linpack Benchmark
+
+okcpuid also has a benchmark not unlike the Linpack Benchmarker:
+
+```r
+linpack(nmin=2000, nmax=5000, by=1000, warn=FALSE)
+#    N      R.max
+# 2000    13591178965 
+# 3000    14043647701 
+# 4000    14043647701 
+# 5000    14312278293 
+# 
+# R.max:  14.312 GFLOPS
+# N.max:  5000
+# R.peak: 35.104 GFLOPS 
+```
 
 
 ## Installation
