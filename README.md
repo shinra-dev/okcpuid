@@ -1,4 +1,10 @@
-# okcpuid [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid) [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
+# okcpuid 
+
+
+* **Version:** 0.3
+* **Status:** [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid) 
+* **License:** [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
+* **Author:** Drew Schmidt
 
 okcpuid is an R package that gives some basic cpu information (clock speed, number of cores, etc.).  
 It's ok.
