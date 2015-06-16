@@ -180,7 +180,7 @@ summary.linpack <- function(object, ..., digits=3)
   
   maxlen <- max(sapply(names(ret), nchar))
   names <- gsub(names(ret), pattern="_", replacement=" ")
-  names <- title_case(ret=names)
+  names <- title_case(x=names)
   spacenames <- simplify2array(lapply(names, function(str) paste0(str, ":", paste0(rep(" ", maxlen-nchar(str)), collapse=""))))
   
   cat(paste(spacenames, sapply(ret, round, digits=digits), sep=" ", collapse="\n"), "\n")
