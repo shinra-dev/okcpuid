@@ -1,0 +1,29 @@
+PKG_CPPFLAGS = -I../inst/RNACI
+PKG_CFLAGS = -w
+PKG_LIBS = $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+
+
+R_OBJS = \
+	cpuid/libcpuid/cpuid_main.o \
+	cpuid/libcpuid/recog_intel.o \
+	cpuid/libcpuid/recog_amd.o \
+	cpuid/libcpuid/rdtsc.o \
+	cpuid/libcpuid/asm-bits.o \
+	cpuid/libcpuid/libcpuid_util.o \
+	getcores.o \
+	linpack.o \
+	wrappers.o
+
+
+OBJECTS = ${R_OBJS}
+
+
+### Start making here.
+all: $(SHLIB)
+
+$(SHLIB): $(OBJECTS)
+
+clean:
+		@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+				cpuid/libspuid/*.o $(SHLIB) $(OBJECTS)
+
