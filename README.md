@@ -1,10 +1,9 @@
 # okcpuid 
 
-* **Version:** 0.3.0
-* **Status:** [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid)
+* **Version:** 0.4.0
+* **Status:** [![Build Status](https://travis-ci.org/shinra-dev/okcpuid.png)](https://travis-ci.org/shinra-dev/okcpuid) 
 * **License:** [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt
-
 
 okcpuid is an R package that gives some basic cpu information (clock speed, number of cores, etc.).  
 It's ok.
@@ -89,3 +88,18 @@ linpack(nmin=2000, nmax=5000, by=1000, warn=FALSE)
 ```r
 devtools::install_github("wrathematics/okcpuid")
 ```
+
+
+
+## Authors
+
+memuse is authored and maintained by:
+* Drew Schmidt
+
+With additional contributions from:
+* Wei-Chen Chen
+* Christian Heckendorf
+
+The files in `okcpuid/src/cpuid` are Copyright 2008 Veselin
+Georgiev, with some light modifications made by Drew Schmidt 2014.
+

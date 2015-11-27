@@ -1,15 +1,25 @@
-Release 0.3.0:
-	* Switched documentation to roxygen2.
-	* Vast improvements to linpack benchmarker.
-	* Registered native routines.
+Release 0.4.0:
+  * Switched to header-only RNACI.
+
+Release 0.3:
+  * Switched documentation to roxygen2.
+  * Vast improvements to linpack benchmarker.
+  * Registered native routines.
 
 Release 0.2:
-	* Renamed to okcpuid
-	* Improvements to cpuid wrappers and sourceform.
-	* Supported logical returns in cpu_ins().
-	* Added Linpack benchmarker.
+  * Renamed to okcpuid
+  * Improvements to cpuid wrappers and sourceform.
+  * Supported logical returns in cpu_ins().
+  * Added Linpack benchmarker.
 
 Release 0.1:
+<<<<<<< HEAD
 	* Added wrappers to cpuid library.
 	* Added core counter.
 	* Added flops and MHz OO handling for fancy printing.
+=======
+  * Added wrappers to cpuid library.
+  * Added core counter.
+  * Added flops and MHz OO handling for fancy printing.
+
+>>>>>>> b380a7d3f26323337ba20ad8363f0dd376b4bccf
