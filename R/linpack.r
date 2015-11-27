@@ -83,7 +83,7 @@ solve_nocopy <- function(problemsize)
 #' 
 #' @references \url{http://www.top500.org/project/linpack/}
 #' 
-#' @name linpack_benchmark
+#' @name linpack
 #' @rdname linpack
 #' @export
 linpack <- function(nmin=1000, nmax="choose", by="doubling", warn=TRUE, verbose=TRUE)
@@ -180,7 +180,7 @@ summary.linpack <- function(object, ..., digits=3)
   
   maxlen <- max(sapply(names(ret), nchar))
   names <- gsub(names(ret), pattern="_", replacement=" ")
-  names <- title_case(ret=names)
+  names <- title_case(names)
   spacenames <- simplify2array(lapply(names, function(str) paste0(str, ":", paste0(rep(" ", maxlen-nchar(str)), collapse=""))))
   
   cat(paste(spacenames, sapply(ret, round, digits=digits), sep=" ", collapse="\n"), "\n")
@@ -207,7 +207,7 @@ print.linpack <- function(x, ..., digits=3)
 {
   maxlen <- max(sapply(names(x), nchar))
   names <- gsub(names(x), pattern="_", replacement=" ")
-  names <- title_case(x=names)
+  names <- title_case(names)
   spacenames <- simplify2array(lapply(names, function(str) paste0(str, ":", paste0(rep(" ", maxlen-nchar(str)), collapse=""))))
   
   printfun <- function(x, digits)
@@ -231,7 +231,9 @@ print.linpack <- function(x, ..., digits=3)
 #' @param i
 #' Index.
 #' 
-#' @rdname subset
+#' @name subset-linpack
+#' @rdname subset-linpack
+#' @method [ linpack
 #' @export
 "[.linpack" <- function(x, i)
 {
@@ -244,4 +246,3 @@ print.linpack <- function(x, ..., digits=3)
   
   return(ret)
 }
-
