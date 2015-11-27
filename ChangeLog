@@ -1,4 +1,4 @@
-Release 0.3:
+Release 0.3.0:
 	* Switched documentation to roxygen2.
 	* Vast improvements to linpack benchmarker.
 	* Registered native routines.
@@ -13,4 +13,3 @@ Release 0.1:
 	* Added wrappers to cpuid library.
 	* Added core counter.
 	* Added flops and MHz OO handling for fancy printing.
-

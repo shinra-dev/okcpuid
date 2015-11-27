@@ -14,6 +14,8 @@
 #'    okcpuid_cpuid, okcpuid_available_instructions, okcpuid_cpuid_info,
 #'    R_solve_nocopy
 #' 
+#' @importFrom stats rnorm
+#' @importFrom utils capture.output
 #' @import memuse
 #' 
 #' @name okcpuid-package
@@ -21,5 +23,3 @@
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}
 #' @keywords Package
 NULL
-
-
